@@ -110,12 +110,19 @@ class ChartBuilder(object):
             os.path.join(self.source_directory, 'Chart.yaml')).read()))
 
         # construct Metadata object
-        return Metadata(
-            description=chart_yaml.description,
-            name=chart_yaml.name,
-            version=chart_yaml.version,
-            appVersion=chart_yaml.appVersion
-        )
+        if 'appVersion' not in chart_yaml:
+            return Metadata(
+                description=chart_yaml.description,
+                name=chart_yaml.name,
+                version=chart_yaml.version
+            )
+        else:
+            return Metadata(
+                description=chart_yaml.description,
+                name=chart_yaml.name,
+                version=chart_yaml.version,
+                appVersion=chart_yaml.appVersion
+            )
 
     def get_files(self):
         '''
