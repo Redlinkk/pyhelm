@@ -113,7 +113,8 @@ class ChartBuilder(object):
         return Metadata(
             description=chart_yaml.description,
             name=chart_yaml.name,
-            version=chart_yaml.version
+            version=chart_yaml.version,
+            appVersion=chart_yaml.appVersion
         )
 
     def get_files(self):
